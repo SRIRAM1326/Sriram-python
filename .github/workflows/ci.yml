@@ -1,0 +1,39 @@
+name: Python Mini Projects CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest cryptography pillow pypdf qrcode requests
+
+    - name: Verify compilation across all 60 projects
+      run: |
+        python -c "import py_compile, glob; [py_compile.compile(f, doraise=True) for f in glob.glob('*/*.py')]; print('Syntax verified across all 60 projects!')"
+
+    - name: Run test suite with pytest
+      run: |
+        pytest -v

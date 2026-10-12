@@ -1,0 +1,19 @@
+# Python Mini Projects - Dependencies
+# Note: Every project includes standard library fallbacks and runs with zero external dependencies.
+# The libraries below provide enhanced GUI, raster image processing, PDF, and audio capabilities.
+
+# Optional Feature Enhancements
+pillow>=10.0.0            # Project 47 (Image Resizer)
+pypdf>=4.0.0              # Project 48 (PDF Merger)
+qrcode[pil]>=7.4.0        # Project 42 (QR Code Generator)
+cryptography>=41.0.0      # Project 58 (Password-Protected Notes)
+requests>=2.31.0          # Projects 44, 52 (Currency & Website Checker)
+SpeechRecognition>=3.10.0 # Project 57 (Speech to Text)
+pywin32>=306; sys_platform == 'win32' # Project 56 (Text to Speech on Windows)
+rich>=13.0.0              # Styled CLI visuals & formatting
+
+# Testing & Development Quality
+pytest>=7.4.0
+pytest-cov>=4.1.0
+ruff>=0.1.0
+mypy>=1.6.0
